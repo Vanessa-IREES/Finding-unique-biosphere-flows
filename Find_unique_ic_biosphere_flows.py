@@ -2,7 +2,7 @@ import pandas as pd
 import os
 
 #path to excel file with impact categories
-excel_file = r"C:\Users\schindler\Desktop\Projects\Skripts\OBDinBW2\EF3.1_EN15804_impact_categories_initial.xlsx"
+excel_file = r"C:\Users\...\EF3.1_EN15804_impact_categories_initial.xlsx" #please change path
 
 #Makes a dictionary of dataframes (one df per excel sheet)
 excel_to_read = pd.read_excel(excel_file, sheet_name=None, header=2, usecols=['Name', 'Category','Amount', 'Unit','Uncertainty']) #header=3 starts reading the data from line 4 on and takes the column name from line 3
