@@ -1,8 +1,10 @@
 import pandas as pd
 import os
+from pathlib import Path
 
 # Path to excel file with impact categories
-excel_file = r"C:\Users\...\EF3.1_EN15804_impact_categories_initial.xlsx" #please change path
+# Please run in same directory as excel file and OBDinBW2 folder 
+excel_file = "EF3.1_EN15804_impact_categories_initial.xlsx" #please change if necessary
 
 # Makes a dictionary of dataframes (one df per excel sheet)
 excel_to_read = pd.read_excel(excel_file, sheet_name=None, header=2, usecols=['Name', 'Category','Amount', 'Unit','Uncertainty']) #header=3 starts reading the data from line 4 on and takes the column name from line 3
@@ -16,13 +18,13 @@ combined_df['Count'] = 1
 combined_df = combined_df.groupby(['Name', 'Category'])['Count'].count().reset_index()
 
 # Path to new excel document
-path = r"C:\Users\...\OBDinBW2" #please change path
+path = "OBDinBW2" #please change path if necessary
 combined_df.to_excel(excel_writer= os.path.join(path, "biosphere_flows_combined_one_list.xlsx"))
 
 print(combined_df)
 
 # Define folder where new excel files are saved
-folder = r"C:\Users\schindler\Desktop\Projects\Skripts\OBDinBW2\Marked"
+folder = Path("OBDinBW2") / "Marked"
 
 # Iteration over every sheet in the excel_to_read
 for sheet_name, df_excel in excel_to_read.items():
